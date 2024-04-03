@@ -70,6 +70,51 @@
                 @enderror
             </div>
 
+            {{-- Aggiungiamo i technologies --}}
+            <div class="mb-3">
+                <label for="technologies" class="form-label">Select technologies</label>
+
+                <select
+                    multiple
+
+                    class="form-select form-select-lg"
+                    name="technologies[]"
+                    id="technologies"
+                >
+                    <option value="">Select one</option>
+
+                    @forelse ($technologies as $element)
+
+                        {{-- controllo di validazione --}}
+
+                        @if ( $errors->any() )
+                            <option
+                                value="{{ $element->id }}"
+                                {{ in_array($element->id, old( 'technologies', [] )) ? 'selected' : '' }}
+                                >
+                                {{ $element->name }}
+                            </option>
+
+                            @else
+
+                            <option
+                                value="{{ $element->id }}"
+                                {{ $project->technologies->contains( $element->id ) ? 'selected' : '' }}
+                                >
+                                {{$element->name}}
+                            </option>
+
+                        @endif
+                    @empty
+
+                        <option value="">Non ci sono technologies</option>
+
+                    @endforelse
+
+                </select>
+            </div>
+
+
             <button type="submit" class="btn btn-primary d-block ms-auto">ADD</button>
         </form>
 

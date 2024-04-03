@@ -15,6 +15,15 @@
             </strong>
         </p>
 
+        @if ($project->technologies->count())
+        <h4>Technologies:</h4>
+        <ul>
+            @foreach ( $project->technologies as $item )
+                <li>{{$item->name}}</li>
+            @endforeach
+        </ul>
+        @endif
+
         <p>{{ $project->content }}</p>
 
     </div>

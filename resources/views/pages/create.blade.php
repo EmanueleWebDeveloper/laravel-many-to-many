@@ -62,6 +62,34 @@
                     @enderror
                 </div>
 
+                 {{-- Aggiungiamo i tags --}}
+
+            <div class="mb-3">
+                <label for="technologies" class="form-label">Select technologies</label>
+
+                <select
+                    multiple
+
+                    class="form-select form-select-lg"
+                    name="technologies[]"
+                    id="technologies"
+                >
+                    <option value="">Select one</option>
+
+                    @forelse ($technologies as $item)
+
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @empty
+
+                        <option value="">Non ci sono technologies</option>
+
+                    @endforelse
+
+                </select>
+            </div>
+
+
+
                 <button type="submit" class="btn btn-primary d-block ms-auto">ADD
                 </button>
 
